@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { adminApi, postsApi } from '../services/api'
+import { adminApi } from '../services/api'
 import { Post, User } from '../types'
 import { Shield, CheckCircle, XCircle, Calendar, User as UserIcon, ToggleLeft, ToggleRight } from 'lucide-react'
 

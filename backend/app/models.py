@@ -60,5 +60,13 @@ class Post(Base):
     # Relationships
     author = relationship("User", back_populates="posts")
 
+class NewsletterSubscriber(Base):
+    __tablename__ = "newsletter_subscribers"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String, unique=True, index=True, nullable=False)
+    is_active = Column(Boolean, default=True)
+    subscribed_at = Column(DateTime(timezone=True), server_default=func.now())
+
 
 

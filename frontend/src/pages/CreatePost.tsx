@@ -29,7 +29,7 @@ export default function CreatePost() {
     try {
       setError('')
       await postsApi.createPost(data)
-      navigate('/posts')
+      navigate('/dashboard/posts')
     } catch (err: any) {
       setError(err.response?.data?.detail || 'Failed to create post')
     }
@@ -38,7 +38,7 @@ export default function CreatePost() {
   return (
     <div className="px-4 sm:px-6 lg:px-8 max-w-4xl">
       <div className="mb-8">
-        <Link to="/posts" className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-4">
+        <Link to="/dashboard/posts" className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-4">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Posts
         </Link>
@@ -105,7 +105,7 @@ export default function CreatePost() {
               )}
               Create Post
             </button>
-            <Link to="/posts" className="btn-secondary">
+            <Link to="/dashboard/posts" className="btn-secondary">
               Cancel
             </Link>
           </div>

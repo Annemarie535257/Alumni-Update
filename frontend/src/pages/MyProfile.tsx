@@ -12,7 +12,7 @@ export default function MyProfile() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<Partial<AlumniProfile>>()
+  const { register, handleSubmit, reset } = useForm<Partial<AlumniProfile>>()
 
   useEffect(() => {
     fetchProfile()

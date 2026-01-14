@@ -85,5 +85,18 @@ class LoginRequest(BaseModel):
     email: EmailStr
     password: str
 
+# Newsletter Schemas
+class NewsletterSubscribe(BaseModel):
+    email: EmailStr
+
+class NewsletterSubscriberResponse(BaseModel):
+    id: int
+    email: str
+    is_active: bool
+    subscribed_at: datetime
+    
+    class Config:
+        from_attributes = True
+
 
 

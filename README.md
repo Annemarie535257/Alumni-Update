@@ -345,26 +345,72 @@ UPDATE users SET role = 'admin' WHERE email = 'admin@example.com';
 
 ## 🚢 Deployment
 
-### Frontend (Vercel)
-1. Push code to GitHub
-2. Import project in Vercel
-3. Set build command: `npm run build`
-4. Set output directory: `dist`
-5. Add environment variable: `VITE_API_URL` (your backend URL)
+### Frontend (Netlify) - Recommended
 
-### Backend (Render)
+See detailed instructions in [NETLIFY_DEPLOYMENT.md](./NETLIFY_DEPLOYMENT.md)
+
+**Quick Steps:**
+1. Push code to GitHub
+2. Sign up at https://netlify.com
+3. Import project from GitHub
+4. Set base directory: `frontend`
+5. Set build command: `npm run build`
+6. Set publish directory: `dist`
+7. Add environment variable: `VITE_API_URL` (your backend URL)
+8. Deploy!
+
+**Alternative Frontend Hosting:**
+- **Vercel**: Similar to Netlify, excellent for React apps
+- **Cloudflare Pages**: Fast global CDN
+- **GitHub Pages**: Free for public repos
+
+### Backend Hosting Options
+
+**Option 1: Railway (Recommended)**
+1. Sign up at https://railway.app
+2. Create new project from GitHub
+3. Add PostgreSQL service
+4. Set environment variables:
+   - `DATABASE_URL` (from PostgreSQL service)
+   - `SECRET_KEY` (generate a secure key)
+   - `ALGORITHM=HS256`
+   - `ACCESS_TOKEN_EXPIRE_MINUTES=30`
+5. Deploy and get your backend URL
+
+**Option 2: Fly.io**
+1. Install Fly CLI: `curl -L https://fly.io/install.sh | sh`
+2. Login: `fly auth login`
+3. Create app: `fly launch`
+4. Add PostgreSQL: `fly postgres create`
+5. Set secrets: `fly secrets set DATABASE_URL=... SECRET_KEY=...`
+6. Deploy: `fly deploy`
+
+**Option 3: Render**
 1. Create a new Web Service on Render
 2. Connect your GitHub repository
 3. Set build command: `pip install -r requirements.txt`
 4. Set start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 5. Add environment variables from your `.env` file
-6. Create a PostgreSQL database on Render and use its connection string
+6. Create a PostgreSQL database on Render
 
-### Database (Render PostgreSQL)
-1. Create a new PostgreSQL database on Render
-2. Copy the connection string
-3. Update `DATABASE_URL` in your backend environment variables
-4. Run migrations: `alembic upgrade head`
+### Database Hosting
+
+**Option 1: Supabase (Recommended)**
+1. Sign up at https://supabase.com
+2. Create new project
+3. Get connection string from Settings → Database
+4. Use connection string in backend `DATABASE_URL`
+5. Run migrations: `alembic upgrade head`
+
+**Option 2: Neon**
+1. Sign up at https://neon.tech
+2. Create new project
+3. Copy connection string
+4. Use in backend environment variables
+
+**Option 3: Railway PostgreSQL**
+- Included when using Railway for backend
+- Automatically configured
 
 ## 🐛 Troubleshooting
 

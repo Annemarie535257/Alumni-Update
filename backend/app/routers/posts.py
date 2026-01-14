@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+from typing import Optional
 from app.database import get_db
 from app.models import User, Post, PostStatus, UserRole
 from app.schemas import PostCreate, PostUpdate, PostResponse, PostWithAuthor
@@ -30,7 +31,7 @@ async def create_post(
 async def get_posts(
     skip: int = 0,
     limit: int = 100,
-    status_filter: PostStatus | None = None,
+    status_filter: Optional[PostStatus] = None,
     db: Session = Depends(get_db)
 ):
     query = db.query(Post)

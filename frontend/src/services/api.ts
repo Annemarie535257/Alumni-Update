@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { User, AlumniProfile, Post, LoginResponse, RegisterRequest, LoginRequest } from '../types'
+import { User, AlumniProfile, Post, LoginResponse } from '../types'
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
@@ -137,6 +137,23 @@ export const adminApi = {
   
   toggleUserActive: async (id: number): Promise<User> => {
     const response = await api.put<User>(`/api/admin/users/${id}/toggle-active`)
+    return response.data
+  },
+}
+
+export const newsletterApi = {
+  subscribe: async (email: string): Promise<{ message: string; subscribed: boolean }> => {
+    const response = await api.post<{ message: string; subscribed: boolean }>('/api/newsletter/subscribe', { email })
+    return response.data
+  },
+  
+  unsubscribe: async (email: string): Promise<{ message: string }> => {
+    const response = await api.delete<{ message: string }>(`/api/newsletter/unsubscribe/${email}`)
+    return response.data
+  },
+  
+  getSubscribers: async (): Promise<any[]> => {
+    const response = await api.get<any[]>('/api/newsletter/subscribers')
     return response.data
   },
 }

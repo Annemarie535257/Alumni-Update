@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { postsApi } from '../services/api'
 import { Post } from '../types'
 import { useAuth } from '../contexts/AuthContext'
-import { Calendar, Plus, Edit, Trash2 } from 'lucide-react'
+import { Calendar, Plus, Trash2 } from 'lucide-react'
 
 export default function Posts() {
   const [posts, setPosts] = useState<Post[]>([])
@@ -52,7 +52,7 @@ export default function Posts() {
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Community Updates</h1>
           <p className="text-gray-600">Latest posts from alumni</p>
         </div>
-        <Link to="/posts/create" className="btn-primary flex items-center">
+        <Link to="/dashboard/posts/create" className="btn-primary flex items-center">
           <Plus className="w-5 h-5 mr-2" />
           Create Post
         </Link>
@@ -61,7 +61,7 @@ export default function Posts() {
       {posts.length === 0 ? (
         <div className="card text-center py-12">
           <p className="text-gray-500 mb-4">No posts yet. Be the first to share an update!</p>
-          <Link to="/posts/create" className="btn-primary inline-flex items-center">
+          <Link to="/dashboard/posts/create" className="btn-primary inline-flex items-center">
             <Plus className="w-5 h-5 mr-2" />
             Create First Post
           </Link>
